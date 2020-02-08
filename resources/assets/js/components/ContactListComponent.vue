@@ -5,9 +5,10 @@
                 </b-form-input>
             </b-form>
         <b-list-group>
-            <contact-component variant="dark"></contact-component>
-            <contact-component variant="primary"></contact-component>
-            <contact-component variant="secondary"></contact-component>
+            <contact-component v-for="conversation in conversations"
+            :key="conversation.id"
+            :conversation="conversation" @click.native="selectConversation(conversation)">
+            </contact-component>
         </b-list-group>
     </div>
     
@@ -15,8 +16,24 @@
 
 <script>
     export default {
+        data(){
+            return {
+                 conversations:[]
+            }
+        },
         mounted() {
-            console.log('Component mounted.')
+            this.getConversations();
+        },
+        methods: {
+            getConversations(){
+                axios.get('/api/conversations')
+                .then((response)=>{
+                    this.conversations = response.data;
+                });
+            },
+            selectConversation(conversation){
+                 console.log(conversation);
+            }
         }
     }
 </script>
