@@ -1,18 +1,35 @@
 <template>
-    <div>
-        <b-form class="my-3 mx-2">
-                <b-form-input type="text" placeholder="Buscar contacto..." class="text-center">
-                </b-form-input>
-            </b-form>
-        <b-list-group>
+        <b-list-group id="listGroup">
+            <ul>
             <contact-component v-for="conversation in conversations"
             :key="conversation.id"
             :conversation="conversation" @click.native="selectConversation(conversation)">
             </contact-component>
+            </ul>
         </b-list-group>
-    </div>
-    
 </template>
+<style>
+
+ol, ul, dl {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding-inline-start: 0px;
+}
+#listGroup{
+    max-height: calc(100vh - 250px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#listGroup::-webkit-scrollbar {
+    width: 8px;
+    background: rgba(49, 48, 48, 0.397);
+    height: 10px;
+}
+#listGroup::-webkit-scrollbar-thumb {
+    background-color: rgba(49, 48, 48);
+}
+    
+</style>
 
 <script>
     export default {
@@ -21,13 +38,18 @@
         },
         data(){
             return {
+                
             }
         },
         mounted() {
         },
         methods: {
             selectConversation(conversation){
-                 this.$emit('conversationSelected', conversation);
+                this.$emit('conversationSelected', conversation);
+                $('li').removeClass("contact active");
+                var id = conversation.id;
+                $("#"+id).removeClass("contact");
+                $("#"+id).addClass(" contact active");
             }
         }
     }

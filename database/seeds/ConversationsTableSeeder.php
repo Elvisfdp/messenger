@@ -17,6 +17,7 @@ class ConversationsTableSeeder extends Seeder
             'contact_id' => 2,
             'last_message' => null,
             'last_time' => null,
+            'level' => 2
             //'listen_notifications' => ,
             //'has_blocked' => ,
         ]);
@@ -26,6 +27,7 @@ class ConversationsTableSeeder extends Seeder
             'contact_id' => 1,
             'last_message' => null,
             'last_time' => null,
+            'level' => 2
             //'listen_notifications' => ,
             //'has_blocked' => ,
         ]);
@@ -35,6 +37,7 @@ class ConversationsTableSeeder extends Seeder
             'contact_id' => 3,
             'last_message' => null,
             'last_time' => null,
+            'level' => 4
             //'listen_notifications' => ,
             //'has_blocked' => ,
         ]);
@@ -44,6 +47,7 @@ class ConversationsTableSeeder extends Seeder
             'contact_id' => 1,
             'last_message' => null,
             'last_time' => null,
+            'level' => 2
             //'listen_notifications' => ,
             //'has_blocked' => ,
         ]);

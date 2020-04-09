@@ -28,6 +28,7 @@ class CreateConversationsTable extends Migration
             $table->boolean('listen_notifications')->default(true);
             //has_blocked
             $table->boolean('has_blocked')->default(false);
+            $table->integer('level');
             $table->timestamps();
         });
     }

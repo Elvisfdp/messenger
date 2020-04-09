@@ -1,13 +1,19 @@
 <template>
     <b-row class="h-100">
-        <b-col cols="8">
+        <b-col cols="12" style="padding:0px;">
             <b-card
                 footer-bg-variant="light"
                 footer-border-variant="dark"
                 title="Conversación activa"
                 class="h-100"
-            no-body>
-            <b-card-body class="card-body-scroll">
+            no-body style="background: #464646;">
+            <div class="contact-profile" style="width: 100%;height: 60px;line-height: 50px;background: rgb(27, 26, 26);">
+                
+                <p><b-img rounded="circle" alt="Circle image" blank width="40" height="40" blank-color="#777" class="m-1"></b-img>
+                {{contactName}} {{contactLastName}}</p>
+                <hr>
+            </div>
+            <b-card-body class="card-body-scroll" style="background: #464646;">
                  <message-conversation-component 
                 v-for="message in messages"
                 :key="message.id" 
@@ -18,30 +24,52 @@
             <div slot="footer">
                 <b-form class="mb-0" @submit.prevent="postMessages" autocomplete="off">
                     <b-input-group>
-                        <b-form-input class="text-center" type="text" v-model="newMessage" placeholder="Escribe un mensaje">
+                        <b-form-input type="text" v-model="newMessage" placeholder="Escribe un mensaje">
                         </b-form-input>
                         <b-input-group-append>
-                            <b-button type="submit" variant="primary">Enviar</b-button>
+                            <b-button type="submit" variant="primary"><i class="fa fa-paper-plane" aria-hidden="true"></i></b-button>
                         </b-input-group-append>
                     </b-input-group>
                 </b-form>
             </div>
             </b-card>                   
         </b-col>
-        <b-col cols="4">
+        <!--<b-col cols="4">
             <b-img rounded="circle" alt="Circle image" blank width="60" height="60" blank-color="#777" class="m-1"></b-img>
             <p>{{contactName}}</p>
             <hr>
             <b-form-checkbox>
                 Descativar notificaciones
             </b-form-checkbox>
-        </b-col>
+        </b-col>-->
     </b-row>
 </template>
 <style>
+    .h-100 {
+    height: 100% !important;
+    border: none;
+    }
     .card-body-scroll{
-        max-height: calc(100vh - 63px);
+        max-height: calc(100vh - 123px);
         overflow-y: auto;
+    }
+    .card-body-scroll::-webkit-scrollbar {
+        width: 8px;
+        height: 10px;
+        background: transparent;
+    }
+    .card-body-scroll::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+    .form-control{
+        border-radius: 0px;
+    }
+    .card-footer{
+        padding:inherit;
+    }
+    .btn{
+        border-radius: 0px;
+        width:100%;
     }
 </style>
 <script>
@@ -49,7 +77,8 @@ export default {
     props:{
         contactId: Number,
         contactName: String,
-        messages: Array
+        messages: Array,
+        contactLastName:String
     },
     data(){
        return{

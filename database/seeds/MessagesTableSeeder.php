@@ -15,25 +15,25 @@ class MessagesTableSeeder extends Seeder
         Message::create([
         'from_id' => 1,
         'to_id' => 2,
-        'content' => 'Hola, como estas?',
+        'content' => 'Hola, como estas?'
         ]);
 
         Message::create([
         'from_id' => 2,
         'to_id' => 1,
-        'content' => 'Bien gracias y tu?',
+        'content' => 'Bien gracias y tu?'
         ]);
 
         Message::create([
             'from_id' => 1,
             'to_id' => 3,
-            'content' => 'Hola, a los tiempos',
+            'content' => 'Hola, a los tiempos'
             ]);
     
         Message::create([
             'from_id' => 3,
             'to_id' => 1,
-            'content' => 'Que tal!',
+            'content' => 'Que tal!'
         ]);
         
     }
