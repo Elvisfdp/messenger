@@ -76379,7 +76379,7 @@ exports = module.exports = __webpack_require__(16)(false);
 
 
 // module
-exports.push([module.i, "\n.h-100{\n    background: rgb(53, 53, 53);\n}\n#bottom-bar {\n    position: absolute;\n    width: calc(100% - 30px);;\n    bottom: 0;\n}\n#bottom-bar button {\n    float: left;\n    border: none;\n    width: 100%;\n    padding: 10px 0;\n    background: #118abc;\n    color: #f5f5f5;\n    cursor: pointer;\n    font-size: 0.85em;\n    font-family: \"proxima-nova\",  \"Source Sans Pro\", sans-serif;\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button {\n      float: none;\n      width: 100%;\n      padding: 15px 0;\n}\n}\n#bottom-bar button:focus {\n    outline: none;\n}\n#bottom-bar button:nth-child(1) {\n    border-right: 1px solid rgb(37, 35, 35);\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button:nth-child(1) {\n      border-right: none;\n      border-bottom: 1px solid rgb(37, 35, 35);\n}\n}\n#bottom-bar button:hover {\n    background: rgba(49, 48, 48, 0.397);\n}\n#bottom-bar button i {\n    margin-right: 3px;\n    font-size: 1em;\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button i {\n      font-size: 1.3em;\n}\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button span {\n      display: none;\n}\n}\n#profile .wrap img {\n        width: 50px;\n        border-radius: 50%;\n        padding: 3px;\n        border: 2px solid #e74c3c;\n        height: auto;\n        float: left;\n        cursor: pointer;\n        -moz-transition: 0.3s border ease;\n        -o-transition: 0.3s border ease;\n        -webkit-transition: 0.3s border ease;\n        transition: 0.3s border ease;\n}\n", ""]);
+exports.push([module.i, "\n.h-100{\n    background: rgb(53, 53, 53);\n}\n#bottom-bar {\n    position: absolute;\n    width: calc(100% - 30px);\n    bottom: 0;\n}\n#bottom-bar button {\n    float: left;\n    border: none;\n    width: 50%;\n    padding: 10px 0;\n    background: #118abc;\n    color: #f5f5f5;\n    cursor: pointer;\n    font-size: 0.85em;\n    font-family: \"proxima-nova\",  \"Source Sans Pro\", sans-serif;\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button {\n      float: none;\n      width: 100%;\n      padding: 15px 0;\n}\n}\n#bottom-bar button:focus {\n    outline: none;\n}\n#bottom-bar button:nth-child(1) {\n    border-right: 1px solid rgb(37, 35, 35);\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button:nth-child(1) {\n      border-right: none;\n      border-bottom: 1px solid rgb(37, 35, 35);\n}\n}\n#bottom-bar button:hover {\n    background: rgba(49, 48, 48, 0.397);\n}\n#bottom-bar button i {\n    margin-right: 3px;\n    font-size: 1em;\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button i {\n      font-size: 1.3em;\n}\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button span {\n      display: none;\n}\n}\n", ""]);
 
 // exports
 
@@ -76537,30 +76537,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -76572,6 +76548,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             messages: [],
             conversations: [],
             notConversations: [],
+            UpdateId: 0,
             querySearch: ''
 
         };
@@ -76641,6 +76618,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(response.data);
                 _this4.notConversations = response.data;
             });
+        },
+        UpdateContacts: function UpdateContacts(UpdateId) {
+            this.UpdateId += 1;
+            this.getConversations();
         }
     },
     computed: {
@@ -76665,48 +76646,21 @@ var render = function() {
   return _c(
     "b-container",
     {
-      staticStyle: {
-        height: "calc(100vh - 116px)",
-        "padding-left": "0px",
-        "padding-right": "0px"
-      },
+      staticStyle: { height: "calc(100vh - 56px)", "padding-left": "0px" },
       attrs: { fluid: "" }
     },
     [
       _c(
         "b-row",
-        {
-          staticClass: "h-100",
-          staticStyle: {
-            "margin-bottom": "30px",
-            "margin-block-start": "30px",
-            "margin-left": "30px",
-            "margin-right": "30px"
-          }
-        },
+        { staticClass: "h-100" },
         [
           _c(
             "b-col",
             {
               staticStyle: { background: "rgb(27, 26, 26)" },
-              attrs: { cols: "4" }
+              attrs: { cols: "3" }
             },
             [
-              _c("div", { attrs: { id: "profile" } }, [
-                _c("div", { staticClass: "wrap" }, [
-                  _c("img", {
-                    staticClass: "online",
-                    attrs: {
-                      id: "profile-img",
-                      src: "http://emilcarlsson.se/assets/mikeross.png",
-                      alt: ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("p", [_vm._v("Mike Ross")])
-                ])
-              ]),
-              _vm._v(" "),
               _c(
                 "b-form",
                 { staticClass: "my-3 mx-2", attrs: { autocomplete: "off" } },
@@ -76753,7 +76707,10 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("contact-list-component", {
-                attrs: { conversations: _vm.conversationsFiltered },
+                attrs: {
+                  conversations: _vm.conversationsFiltered,
+                  id: _vm.UpdateId
+                },
                 on: {
                   conversationSelected: function($event) {
                     return _vm.changeActiveConversation($event)
@@ -76783,6 +76740,26 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("span", [_vm._v("Agregar contactos")])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    attrs: { id: "actualizarcontact" },
+                    on: {
+                      click: function($event) {
+                        return _vm.UpdateContacts()
+                      }
+                    }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-refresh",
+                      attrs: { "aria-hidden": "true" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", [_vm._v("Actualizar contactos")])
                   ]
                 )
               ])
@@ -76973,7 +76950,7 @@ exports = module.exports = __webpack_require__(16)(false);
 
 
 // module
-exports.push([module.i, "\n.contact {\n    background: rgb(27, 26, 26);\n    position: relative;\n    padding: 10px 0 15px 0;\n    font-size: 0.9em;\n    cursor: pointer;\n}\n.contact:hover {\n    background: rgba(49, 48, 48, 0.397);\n}\n.active {\n    background: rgba(49, 48, 48, 0.397);\n    border-right: 5px solid #118ABC;\n}\n", ""]);
+exports.push([module.i, "\n.contact {\n    background: rgb(27, 26, 26);\n    position: relative;\n    font-size: 0.9em;\n    cursor: pointer;\n}\n.contact:hover {\n    background: rgba(49, 48, 48, 0.397);\n}\n.active {\n    background: rgba(49, 48, 48, 0.397);\n    border-right: 5px solid #118ABC;\n}\n", ""]);
 
 // exports
 
@@ -76984,7 +76961,6 @@ exports.push([module.i, "\n.contact {\n    background: rgb(27, 26, 26);\n    pos
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
@@ -77264,7 +77240,7 @@ exports = module.exports = __webpack_require__(16)(false);
 
 
 // module
-exports.push([module.i, "\nol, ul, dl {\r\n    margin-top: 0;\r\n    margin-bottom: 1rem;\r\n    padding-inline-start: 0px;\n}\n#listGroup{\r\n    max-height: calc(100vh - 250px);\r\n    overflow-y: auto;\r\n    overflow-x: hidden;\n}\n#listGroup::-webkit-scrollbar {\r\n    width: 8px;\r\n    background: rgba(49, 48, 48, 0.397);\r\n    height: 10px;\n}\n#listGroup::-webkit-scrollbar-thumb {\r\n    background-color: rgba(49, 48, 48);\n}\r\n    \r\n", ""]);
+exports.push([module.i, "\nol, ul, dl {\r\n    margin-top: 0;\r\n    margin-bottom: 1rem;\r\n    padding-inline-start: 0px;\n}\n.list-group{\r\n    max-height: calc(100vh - 187px);\r\n    overflow-y: auto;\r\n    overflow-x: hidden;\n}\n.list-group::-webkit-scrollbar {\r\n    width: 8px;\r\n    background: rgba(49, 48, 48, 0.397);\r\n    height: 10px;\n}\n.list-group::-webkit-scrollbar-thumb {\r\n    background-color: rgba(49, 48, 48);\n}\r\n", ""]);
 
 // exports
 
@@ -77275,9 +77251,6 @@ exports.push([module.i, "\nol, ul, dl {\r\n    margin-top: 0;\r\n    margin-bott
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
 //
 //
 //
@@ -77589,7 +77562,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-row",
-    { staticClass: "h-100" },
+    { staticClass: "h-100", staticStyle: { "padding-rigth": "0px" } },
     [
       _c(
         "b-col",
@@ -78438,7 +78411,7 @@ exports = module.exports = __webpack_require__(16)(false);
 
 
 // module
-exports.push([module.i, "\n.h-100{\n    background: rgb(53, 53, 53);\n}\n#bottom-bar {\n    position: absolute;\n    width: calc(100% - 30px);;\n    bottom: 0;\n}\n#bottom-bar button {\n    float: left;\n    border: none;\n    width: 100%;\n    padding: 10px 0;\n    background: #118abc;\n    color: #f5f5f5;\n    cursor: pointer;\n    font-size: 0.85em;\n    font-family: \"proxima-nova\",  \"Source Sans Pro\", sans-serif;\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button {\n      float: none;\n      width: 100%;\n      padding: 15px 0;\n}\n}\n#bottom-bar button:focus {\n    outline: none;\n}\n#bottom-bar button:nth-child(1) {\n    border-right: 1px solid rgb(37, 35, 35);\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button:nth-child(1) {\n      border-right: none;\n      border-bottom: 1px solid rgb(37, 35, 35);\n}\n}\n#bottom-bar button:hover {\n    background: rgba(49, 48, 48, 0.397);\n}\n#bottom-bar button i {\n    margin-right: 3px;\n    font-size: 1em;\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button i {\n      font-size: 1.3em;\n}\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button span {\n      display: none;\n}\n}\n#profile .wrap img {\n        width: 50px;\n        border-radius: 50%;\n        padding: 3px;\n        border: 2px solid #e74c3c;\n        height: auto;\n        float: left;\n        cursor: pointer;\n        -moz-transition: 0.3s border ease;\n        -o-transition: 0.3s border ease;\n        -webkit-transition: 0.3s border ease;\n        transition: 0.3s border ease;\n}\n", ""]);
+exports.push([module.i, "\n.h-100{\n    background: rgb(53, 53, 53);\n}\n#bottom-bar {\n    position: absolute;\n    width: calc(100% - 30px);;\n    bottom: 0;\n}\n#bottom-bar button {\n    float: left;\n    border: none;\n    width: 50%;\n    padding: 10px 0;\n    background: #118abc;\n    color: #f5f5f5;\n    cursor: pointer;\n    font-size: 0.85em;\n    font-family: \"proxima-nova\",  \"Source Sans Pro\", sans-serif;\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button {\n      float: none;\n      width: 100%;\n      padding: 15px 0;\n}\n}\n#bottom-bar button:focus {\n    outline: none;\n}\n#bottom-bar button:nth-child(1) {\n    border-right: 1px solid rgb(37, 35, 35);\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button:nth-child(1) {\n      border-right: none;\n      border-bottom: 1px solid rgb(37, 35, 35);\n}\n}\n#bottom-bar button:hover {\n    background: rgba(49, 48, 48, 0.397);\n}\n#bottom-bar button i {\n    margin-right: 3px;\n    font-size: 1em;\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button i {\n      font-size: 1.3em;\n}\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button span {\n      display: none;\n}\n}\n", ""]);
 
 // exports
 
@@ -78449,30 +78422,6 @@ exports.push([module.i, "\n.h-100{\n    background: rgb(53, 53, 53);\n}\n#bottom
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -78598,6 +78547,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             messages: [],
             conversations: [],
             notConversations: [],
+            UpdateId: 0,
             querySearch: ''
         };
     },
@@ -78667,6 +78617,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(response.data);
                 _this4.notConversations = response.data;
             });
+        },
+        UpdateContacts: function UpdateContacts(UpdateId) {
+            this.UpdateId += 1;
+            this.getConversations();
         }
     },
     computed: {
@@ -78691,25 +78645,13 @@ var render = function() {
   return _c(
     "b-container",
     {
-      staticStyle: {
-        height: "calc(100vh - 116px)",
-        "padding-left": "0px",
-        "padding-right": "0px"
-      },
+      staticStyle: { height: "calc(100vh - 56px)", "padding-left": "0px" },
       attrs: { fluid: "" }
     },
     [
       _c(
         "b-row",
-        {
-          staticClass: "h-100",
-          staticStyle: {
-            "margin-bottom": "30px",
-            "margin-block-start": "30px",
-            "margin-left": "30px",
-            "margin-right": "30px"
-          }
-        },
+        { staticClass: "h-100" },
         [
           _c(
             "b-col",
@@ -78718,21 +78660,6 @@ var render = function() {
               attrs: { cols: "3" }
             },
             [
-              _c("div", { attrs: { id: "profile" } }, [
-                _c("div", { staticClass: "wrap" }, [
-                  _c("img", {
-                    staticClass: "online",
-                    attrs: {
-                      id: "profile-img",
-                      src: "http://emilcarlsson.se/assets/mikeross.png",
-                      alt: ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("p", [_vm._v("Mike Ross")])
-                ])
-              ]),
-              _vm._v(" "),
               _c(
                 "b-form",
                 { staticClass: "my-3 mx-2", attrs: { autocomplete: "off" } },
@@ -78779,7 +78706,10 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("contact-list-medico-component", {
-                attrs: { conversations: _vm.conversationsFiltered },
+                attrs: {
+                  conversations: _vm.conversationsFiltered,
+                  id: _vm.UpdateId
+                },
                 on: {
                   conversationSelected: function($event) {
                     return _vm.changeActiveConversation($event)
@@ -78809,6 +78739,26 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("span", [_vm._v("Agregar contactos")])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    attrs: { id: "actualizarcontact" },
+                    on: {
+                      click: function($event) {
+                        return _vm.UpdateContacts()
+                      }
+                    }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-refresh",
+                      attrs: { "aria-hidden": "true" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", [_vm._v("Actualizar contactos")])
                   ]
                 )
               ])
@@ -79289,7 +79239,7 @@ exports = module.exports = __webpack_require__(16)(false);
 
 
 // module
-exports.push([module.i, "\nol, ul, dl {\r\n    margin-top: 0;\r\n    margin-bottom: 1rem;\r\n    padding-inline-start: 0px;\n}\n#listGroup{\r\n    max-height: calc(100vh - 230px);\r\n    overflow-y: auto;\r\n    overflow-x: hidden;\n}\n#listGroup::-webkit-scrollbar {\r\n    width: 8px;\r\n    background: rgba(49, 48, 48, 0.397);\r\n    height: 10px;\n}\n#listGroup::-webkit-scrollbar-thumb {\r\n    background-color: rgba(49, 48, 48);\n}\r\n    \r\n", ""]);
+exports.push([module.i, "\nol, ul, dl {\r\n    margin-top: 0;\r\n    margin-bottom: 1rem;\r\n    padding-inline-start: 0px;\n}\n.list-group{\r\n    max-height: calc(100vh - 187px);\r\n    overflow-y: auto;\r\n    overflow-x: hidden;\n}\n.list-group::-webkit-scrollbar {\r\n    width: 8px;\r\n    background: rgba(49, 48, 48, 0.397);\r\n    height: 10px;\n}\n.list-group::-webkit-scrollbar-thumb {\r\n    background-color: rgba(49, 48, 48);\n}\r\n    \r\n", ""]);
 
 // exports
 
@@ -80120,7 +80070,7 @@ exports = module.exports = __webpack_require__(16)(false);
 
 
 // module
-exports.push([module.i, "\n.h-100{\n    background: rgb(53, 53, 53);\n}\n#bottom-bar {\n    position: absolute;\n    width: calc(100% - 30px);;\n    bottom: 0;\n}\n#bottom-bar button {\n    float: left;\n    border: none;\n    width: 100%;\n    padding: 10px 0;\n    background: #118abc;\n    color: #f5f5f5;\n    cursor: pointer;\n    font-size: 0.85em;\n    font-family: \"proxima-nova\",  \"Source Sans Pro\", sans-serif;\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button {\n      float: none;\n      width: 100%;\n      padding: 15px 0;\n}\n}\n#bottom-bar button:focus {\n    outline: none;\n}\n#bottom-bar button:nth-child(1) {\n    border-right: 1px solid rgb(37, 35, 35);\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button:nth-child(1) {\n      border-right: none;\n      border-bottom: 1px solid rgb(37, 35, 35);\n}\n}\n#bottom-bar button:hover {\n    background: rgba(49, 48, 48, 0.397);\n}\n#bottom-bar button i {\n    margin-right: 3px;\n    font-size: 1em;\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button i {\n      font-size: 1.3em;\n}\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button span {\n      display: none;\n}\n}\n#profile .wrap img {\n        width: 50px;\n        border-radius: 50%;\n        padding: 3px;\n        border: 2px solid #e74c3c;\n        height: auto;\n        float: left;\n        cursor: pointer;\n        -moz-transition: 0.3s border ease;\n        -o-transition: 0.3s border ease;\n        -webkit-transition: 0.3s border ease;\n        transition: 0.3s border ease;\n}\n", ""]);
+exports.push([module.i, "\n.h-100{\n    background: rgb(53, 53, 53);\n}\n#bottom-bar {\n    position: absolute;\n    width: calc(100% - 30px);;\n    bottom: 0;\n}\n#bottom-bar button {\n    float: left;\n    border: none;\n    width: 50%;\n    padding: 10px 0;\n    background: #118abc;\n    color: #f5f5f5;\n    cursor: pointer;\n    font-size: 0.85em;\n    font-family: \"proxima-nova\",  \"Source Sans Pro\", sans-serif;\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button {\n      float: none;\n      width: 100%;\n      padding: 15px 0;\n}\n}\n#bottom-bar button:focus {\n    outline: none;\n}\n#bottom-bar button:nth-child(1) {\n    border-right: 1px solid rgb(37, 35, 35);\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button:nth-child(1) {\n      border-right: none;\n      border-bottom: 1px solid rgb(37, 35, 35);\n}\n}\n#bottom-bar button:hover {\n    background: rgba(49, 48, 48, 0.397);\n}\n#bottom-bar button i {\n    margin-right: 3px;\n    font-size: 1em;\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button i {\n      font-size: 1.3em;\n}\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button span {\n      display: none;\n}\n}\n#profile .wrap img {\n        width: 50px;\n        border-radius: 50%;\n        padding: 3px;\n        border: 2px solid #e74c3c;\n        height: auto;\n        float: left;\n        cursor: pointer;\n        -moz-transition: 0.3s border ease;\n        -o-transition: 0.3s border ease;\n        -webkit-transition: 0.3s border ease;\n        transition: 0.3s border ease;\n}\n", ""]);
 
 // exports
 
@@ -80131,17 +80081,6 @@ exports.push([module.i, "\n.h-100{\n    background: rgb(53, 53, 53);\n}\n#bottom
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -80348,6 +80287,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(response.data);
                 _this4.notConversations = response.data;
             });
+        },
+        UpdateContacts: function UpdateContacts(UpdateId) {
+            this.UpdateId += 1;
+            this.getConversations();
         }
     },
     computed: {
@@ -80372,25 +80315,13 @@ var render = function() {
   return _c(
     "b-container",
     {
-      staticStyle: {
-        height: "calc(100vh - 116px)",
-        "padding-left": "0px",
-        "padding-right": "0px"
-      },
+      staticStyle: { height: "calc(100vh - 56px)", "padding-left": "0px" },
       attrs: { fluid: "" }
     },
     [
       _c(
         "b-row",
-        {
-          staticClass: "h-100",
-          staticStyle: {
-            "margin-bottom": "30px",
-            "margin-block-start": "30px",
-            "margin-left": "30px",
-            "margin-right": "30px"
-          }
-        },
+        { staticClass: "h-100" },
         [
           _c(
             "b-col",
@@ -80399,21 +80330,6 @@ var render = function() {
               attrs: { cols: "3" }
             },
             [
-              _c("div", { attrs: { id: "profile" } }, [
-                _c("div", { staticClass: "wrap" }, [
-                  _c("img", {
-                    staticClass: "online",
-                    attrs: {
-                      id: "profile-img",
-                      src: "http://emilcarlsson.se/assets/mikeross.png",
-                      alt: ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("p", [_vm._v("Mike Ross")])
-                ])
-              ]),
-              _vm._v(" "),
               _c(
                 "b-form",
                 { staticClass: "my-3 mx-2", attrs: { autocomplete: "off" } },
@@ -80460,7 +80376,10 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("contact-list-paciente-component", {
-                attrs: { conversations: _vm.conversationsFiltered },
+                attrs: {
+                  conversations: _vm.conversationsFiltered,
+                  id: _vm.UpdateId
+                },
                 on: {
                   conversationSelected: function($event) {
                     return _vm.changeActiveConversation($event)
@@ -80490,6 +80409,26 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("span", [_vm._v("Agregar contactos")])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    attrs: { id: "actualizarcontact" },
+                    on: {
+                      click: function($event) {
+                        return _vm.UpdateContacts()
+                      }
+                    }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-refresh",
+                      attrs: { "aria-hidden": "true" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", [_vm._v("Actualizar contactos")])
                   ]
                 )
               ])
@@ -80970,7 +80909,7 @@ exports = module.exports = __webpack_require__(16)(false);
 
 
 // module
-exports.push([module.i, "\nol, ul, dl {\r\n    margin-top: 0;\r\n    margin-bottom: 1rem;\r\n    padding-inline-start: 0px;\n}\n#listGroup{\r\n    max-height: calc(100vh - 230);\r\n    overflow-y: auto;\r\n    overflow-x: hidden;\n}\n#listGroup::-webkit-scrollbar {\r\n    width: 8px;\r\n    background: rgba(49, 48, 48, 0.397);\r\n    height: 10px;\n}\n#listGroup::-webkit-scrollbar-thumb {\r\n    background-color: rgba(49, 48, 48);\n}\r\n    \r\n", ""]);
+exports.push([module.i, "\nol, ul, dl {\r\n    margin-top: 0;\r\n    margin-bottom: 1rem;\r\n    padding-inline-start: 0px;\n}\n.list-group{\r\n    max-height: calc(100vh - 187px);\r\n    overflow-y: auto;\r\n    overflow-x: hidden;\n}\n.list-group::-webkit-scrollbar {\r\n    width: 8px;\r\n    background: rgba(49, 48, 48, 0.397);\r\n    height: 10px;\n}\n.list-group::-webkit-scrollbar-thumb {\r\n    background-color: rgba(49, 48, 48);\n}\r\n    \r\n", ""]);
 
 // exports
 

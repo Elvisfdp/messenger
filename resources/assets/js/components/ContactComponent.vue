@@ -33,7 +33,6 @@
     .contact {
         background: rgb(27, 26, 26);
         position: relative;
-        padding: 10px 0 15px 0;
         font-size: 0.9em;
         cursor: pointer;
       }

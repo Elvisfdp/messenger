@@ -14,17 +14,17 @@ ol, ul, dl {
     margin-bottom: 1rem;
     padding-inline-start: 0px;
 }
-#listGroup{
-    max-height: calc(100vh - 230);
+.list-group{
+    max-height: calc(100vh - 187px);
     overflow-y: auto;
     overflow-x: hidden;
 }
-#listGroup::-webkit-scrollbar {
+.list-group::-webkit-scrollbar {
     width: 8px;
     background: rgba(49, 48, 48, 0.397);
     height: 10px;
 }
-#listGroup::-webkit-scrollbar-thumb {
+.list-group::-webkit-scrollbar-thumb {
     background-color: rgba(49, 48, 48);
 }
     
