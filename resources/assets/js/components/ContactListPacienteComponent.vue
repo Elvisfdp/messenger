@@ -45,9 +45,9 @@ ol, ul, dl {
         methods: {
             selectConversation(conversation){
                 this.$emit('conversationSelected', conversation);
-                $('div').removeClass("contact active");
+                $('li').removeClass("contact active");
                 var id = conversation.id;
-                $("#"+id).removeClass("list-group-item");
+                $("#"+id).removeClass("contact");
                 $("#"+id).addClass(" contact active");
             }
         }

@@ -7,6 +7,10 @@ use App\Conversation;
 
 class ConversationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(){
         return Conversation::where('user_id',auth()->id())->get([
             'id',

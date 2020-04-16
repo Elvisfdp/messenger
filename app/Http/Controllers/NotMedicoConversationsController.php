@@ -8,6 +8,10 @@ use App\User;
 
 class NotMedicoConversationsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(){
         $AllUsers = array();
         $ContactUsers =array();

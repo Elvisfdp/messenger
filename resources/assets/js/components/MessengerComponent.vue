@@ -40,16 +40,20 @@
             
                 <!-- Modal Header -->
                 <div class="modal-header" style="background: rgb(53, 53, 53);">
-                <h5 class="modal-title">Agregar contactos</h5>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h5 class="modal-title">Agregar Contactos</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 
-                <!-- Modal body -->
+                <!-- Modal body-->
                 <div class="modal-body" style="background: rgb(53, 53, 53);">
-                        <not-contact-list-component :notConversations="notConversations" :auth_user="userId">
+                    <button id="actualizarcontact" @click="UpdateNotContacts()" style="width:100%;"><i class="fa fa-refresh" aria-hidden="true"></i> <span>Actualizar contactos</span></button>
+                        <not-contact-list-component :notConversations="notConversations" :auth_user="userId" :id="UpdateIdNotContacts">
                         </not-contact-list-component>
-                    </div>
                 </div>
+                <div class="modal-footer" style="background: rgb(53, 53, 53);">
+                    <button type="button" data-dismiss="modal" style="width:50px">Close</button>
+                </div>
+            </div>
             </div>
         </div>
     </b-row>
@@ -123,7 +127,9 @@
                messages:[],
                conversations:[],
                notConversations:[],
+               MyName:'',
                UpdateId:0,
+               UpdateIdNotContacts:0,
                querySearch: ''
               
            }
@@ -194,6 +200,10 @@
             UpdateContacts(UpdateId){
                 this.UpdateId += 1;
                 this.getConversations();
+            },
+            UpdateNotContacts(UpdateIdNotContacts){
+                this.UpdateIdNotContacts += 1;
+                this.datosModal();
             }
         },
         computed:{

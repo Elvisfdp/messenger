@@ -76537,6 +76537,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -76548,7 +76552,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             messages: [],
             conversations: [],
             notConversations: [],
+            MyName: '',
             UpdateId: 0,
+            UpdateIdNotContacts: 0,
             querySearch: ''
 
         };
@@ -76622,6 +76628,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         UpdateContacts: function UpdateContacts(UpdateId) {
             this.UpdateId += 1;
             this.getConversations();
+        },
+        UpdateNotContacts: function UpdateNotContacts(UpdateIdNotContacts) {
+            this.UpdateIdNotContacts += 1;
+            this.datosModal();
         }
     },
     computed: {
@@ -76813,7 +76823,7 @@ var render = function() {
                     },
                     [
                       _c("h5", { staticClass: "modal-title" }, [
-                        _vm._v("Agregar contactos")
+                        _vm._v("Agregar Contactos")
                       ]),
                       _vm._v(" "),
                       _c(
@@ -76834,14 +76844,54 @@ var render = function() {
                       staticStyle: { background: "rgb(53, 53, 53)" }
                     },
                     [
+                      _c(
+                        "button",
+                        {
+                          staticStyle: { width: "100%" },
+                          attrs: { id: "actualizarcontact" },
+                          on: {
+                            click: function($event) {
+                              return _vm.UpdateNotContacts()
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-refresh",
+                            attrs: { "aria-hidden": "true" }
+                          }),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Actualizar contactos")])
+                        ]
+                      ),
+                      _vm._v(" "),
                       _c("not-contact-list-component", {
                         attrs: {
                           notConversations: _vm.notConversations,
-                          auth_user: _vm.userId
+                          auth_user: _vm.userId,
+                          id: _vm.UpdateIdNotContacts
                         }
                       })
                     ],
                     1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal-footer",
+                      staticStyle: { background: "rgb(53, 53, 53)" }
+                    },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticStyle: { width: "50px" },
+                          attrs: { type: "button", "data-dismiss": "modal" }
+                        },
+                        [_vm._v("Close")]
+                      )
+                    ]
                   )
                 ])
               ])
@@ -78048,8 +78098,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: {
         notConversations: Array,
         auth_user: Number
+
     },
-    mounted: function mounted() {}
+    mounted: function mounted() {},
+    data: function data() {
+        return {};
+    },
+
+    methods: {}
 });
 
 /***/ }),
@@ -78536,6 +78592,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -78548,6 +78608,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             conversations: [],
             notConversations: [],
             UpdateId: 0,
+            UpdateIdNotContacts: 0,
             querySearch: ''
         };
     },
@@ -78621,6 +78682,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         UpdateContacts: function UpdateContacts(UpdateId) {
             this.UpdateId += 1;
             this.getConversations();
+        },
+        UpdateNotContacts: function UpdateNotContacts(UpdateIdNotContacts) {
+            this.UpdateIdNotContacts += 1;
+            this.datosModal();
         }
     },
     computed: {
@@ -78833,6 +78898,27 @@ var render = function() {
                       staticStyle: { background: "rgb(53, 53, 53)" }
                     },
                     [
+                      _c(
+                        "button",
+                        {
+                          staticStyle: { width: "100%" },
+                          attrs: { id: "actualizarcontact" },
+                          on: {
+                            click: function($event) {
+                              return _vm.UpdateNotContacts()
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-refresh",
+                            attrs: { "aria-hidden": "true" }
+                          }),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Actualizar contactos")])
+                        ]
+                      ),
+                      _vm._v(" "),
                       _c("not-contact-list-component", {
                         attrs: {
                           notConversations: _vm.notConversations,
@@ -78841,6 +78927,24 @@ var render = function() {
                       })
                     ],
                     1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal-footer",
+                      staticStyle: { background: "rgb(53, 53, 53)" }
+                    },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticStyle: { width: "50px" },
+                          attrs: { type: "button", "data-dismiss": "modal" }
+                        },
+                        [_vm._v("Close")]
+                      )
+                    ]
                   )
                 ])
               ])
@@ -79295,9 +79399,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         selectConversation: function selectConversation(conversation) {
             this.$emit('conversationSelected', conversation);
-            $('div').removeClass("contact active");
+            $('li').removeClass("contact active");
             var id = conversation.id;
-            $("#" + id).removeClass("list-group-item");
+            $("#" + id).removeClass("contact");
             $("#" + id).addClass(" contact active");
         }
     }
@@ -80070,7 +80174,7 @@ exports = module.exports = __webpack_require__(16)(false);
 
 
 // module
-exports.push([module.i, "\n.h-100{\n    background: rgb(53, 53, 53);\n}\n#bottom-bar {\n    position: absolute;\n    width: calc(100% - 30px);;\n    bottom: 0;\n}\n#bottom-bar button {\n    float: left;\n    border: none;\n    width: 50%;\n    padding: 10px 0;\n    background: #118abc;\n    color: #f5f5f5;\n    cursor: pointer;\n    font-size: 0.85em;\n    font-family: \"proxima-nova\",  \"Source Sans Pro\", sans-serif;\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button {\n      float: none;\n      width: 100%;\n      padding: 15px 0;\n}\n}\n#bottom-bar button:focus {\n    outline: none;\n}\n#bottom-bar button:nth-child(1) {\n    border-right: 1px solid rgb(37, 35, 35);\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button:nth-child(1) {\n      border-right: none;\n      border-bottom: 1px solid rgb(37, 35, 35);\n}\n}\n#bottom-bar button:hover {\n    background: rgba(49, 48, 48, 0.397);\n}\n#bottom-bar button i {\n    margin-right: 3px;\n    font-size: 1em;\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button i {\n      font-size: 1.3em;\n}\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button span {\n      display: none;\n}\n}\n#profile .wrap img {\n        width: 50px;\n        border-radius: 50%;\n        padding: 3px;\n        border: 2px solid #e74c3c;\n        height: auto;\n        float: left;\n        cursor: pointer;\n        -moz-transition: 0.3s border ease;\n        -o-transition: 0.3s border ease;\n        -webkit-transition: 0.3s border ease;\n        transition: 0.3s border ease;\n}\n", ""]);
+exports.push([module.i, "\n.h-100{\n     background: rgb(53, 53, 53);\n}\n#bottom-bar {\n     position: absolute;\n     width: calc(100% - 30px);\n     bottom: 0;\n}\n#bottom-bar button {\n     float: left;\n     border: none;\n     width: 50%;\n     padding: 10px 0;\n     background: #118abc;\n     color: #f5f5f5;\n     cursor: pointer;\n     font-size: 0.85em;\n     font-family: \"proxima-nova\",  \"Source Sans Pro\", sans-serif;\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button {\n       float: none;\n       width: 100%;\n       padding: 15px 0;\n}\n}\n#bottom-bar button:focus {\n     outline: none;\n}\n#bottom-bar button:nth-child(1) {\n     border-right: 1px solid rgb(37, 35, 35);\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button:nth-child(1) {\n       border-right: none;\n       border-bottom: 1px solid rgb(37, 35, 35);\n}\n}\n#bottom-bar button:hover {\n     background: rgba(49, 48, 48, 0.397);\n}\n#bottom-bar button i {\n     margin-right: 3px;\n     font-size: 1em;\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button i {\n       font-size: 1.3em;\n}\n}\n@media screen and (max-width: 735px) {\n#bottom-bar button span {\n       display: none;\n}\n} \n", ""]);
 
 // exports
 
@@ -80081,15 +80185,6 @@ exports.push([module.i, "\n.h-100{\n    background: rgb(53, 53, 53);\n}\n#bottom
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -80219,6 +80314,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             messages: [],
             conversations: [],
             notConversations: [],
+            UpdateIdNotContacts: 0,
             querySearch: ''
         };
     },
@@ -80291,6 +80387,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         UpdateContacts: function UpdateContacts(UpdateId) {
             this.UpdateId += 1;
             this.getConversations();
+        },
+        UpdateNotContacts: function UpdateNotContacts(UpdateIdNotContacts) {
+            this.UpdateIdNotContacts += 1;
+            this.datosModal();
         }
     },
     computed: {
@@ -80482,7 +80582,7 @@ var render = function() {
                     },
                     [
                       _c("h5", { staticClass: "modal-title" }, [
-                        _vm._v("Agregar contactos")
+                        _vm._v("Agregar Contactos")
                       ]),
                       _vm._v(" "),
                       _c(
@@ -80503,14 +80603,54 @@ var render = function() {
                       staticStyle: { background: "rgb(53, 53, 53)" }
                     },
                     [
+                      _c(
+                        "button",
+                        {
+                          staticStyle: { width: "100%" },
+                          attrs: { id: "actualizarcontact" },
+                          on: {
+                            click: function($event) {
+                              return _vm.UpdateNotContacts()
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-refresh",
+                            attrs: { "aria-hidden": "true" }
+                          }),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Actualizar contactos")])
+                        ]
+                      ),
+                      _vm._v(" "),
                       _c("not-contact-list-component", {
                         attrs: {
                           notConversations: _vm.notConversations,
-                          auth_user: _vm.userId
+                          auth_user: _vm.userId,
+                          id: _vm.UpdateIdNotContacts
                         }
                       })
                     ],
                     1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal-footer",
+                      staticStyle: { background: "rgb(53, 53, 53)" }
+                    },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticStyle: { width: "50px" },
+                          attrs: { type: "button", "data-dismiss": "modal" }
+                        },
+                        [_vm._v("Close")]
+                      )
+                    ]
                   )
                 ])
               ])
@@ -80965,9 +81105,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         selectConversation: function selectConversation(conversation) {
             this.$emit('conversationSelected', conversation);
-            $('div').removeClass("contact active");
+            $('li').removeClass("contact active");
             var id = conversation.id;
-            $("#" + id).removeClass("list-group-item");
+            $("#" + id).removeClass("contact");
             $("#" + id).addClass(" contact active");
         }
     }

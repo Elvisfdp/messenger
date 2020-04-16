@@ -12,9 +12,20 @@ export default {
     props:{
         notConversations:Array,
         auth_user:Number
+        
     },
     mounted(){
        
+    },
+    data(){
+        return {
+        
+        }
+    },
+    methods:{
+        
+        
+
     }
 }
 </script>

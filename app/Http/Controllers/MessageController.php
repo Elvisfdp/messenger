@@ -8,6 +8,10 @@ use DB;
 
 class MessageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(Request $request){
         $userId = auth()->id();
         $contactId = $request->contact_id;

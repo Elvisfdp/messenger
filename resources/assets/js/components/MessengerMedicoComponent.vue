@@ -46,9 +46,13 @@
                 
                 <!-- Modal body -->
                 <div class="modal-body" style="background: rgb(53, 53, 53);">
+                    <button id="actualizarcontact" @click="UpdateNotContacts()" style="width:100%;"><i class="fa fa-refresh" aria-hidden="true"></i> <span>Actualizar contactos</span></button>
                         <not-contact-list-component :notConversations="notConversations" :auth_user="userId"> 
                         </not-contact-list-component>
-                    </div>
+                </div>
+                <div class="modal-footer" style="background: rgb(53, 53, 53);">
+                    <button type="button" data-dismiss="modal" style="width:50px">Close</button>
+                </div>
                 </div>
             </div>
         </div>
@@ -124,6 +128,7 @@
                conversations:[],
                notConversations:[],
                UpdateId:0,
+               UpdateIdNotContacts:0,
                querySearch: ''
            }
        },
@@ -194,6 +199,10 @@
             UpdateContacts(UpdateId){
                 this.UpdateId += 1;
                 this.getConversations();
+            },
+            UpdateNotContacts(UpdateIdNotContacts){
+                this.UpdateIdNotContacts += 1;
+                this.datosModal();
             }
         },
         computed:{
